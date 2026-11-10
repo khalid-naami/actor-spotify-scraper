@@ -1,0 +1,30 @@
+{
+  "name": "actor-spotify-scraper",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Scrape Spotify tracks, artists, albums, playlists, podcasts, monthly listeners, and audio metadata at scale.",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "node --check src/main.js && node --check src/extractors.js"
+  },
+  "dependencies": {
+    "apify": "^3.2.6",
+    "crawlee": "^3.11.5",
+    "got-scraping": "^4.0.7",
+    "playwright": "^1.49.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "keywords": [
+    "spotify",
+    "spotify-scraper",
+    "music-scraper",
+    "playlist-scraper",
+    "artist-stats",
+    "apify-actor"
+  ],
+  "author": "Apify Developer",
+  "license": "Apache-2.0"
+}
