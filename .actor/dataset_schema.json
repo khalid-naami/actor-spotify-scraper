@@ -1,0 +1,72 @@
+{
+  "actorSpecification": 1,
+  "fields": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Spotify unique identifier"
+      },
+      "type": {
+        "type": "string",
+        "description": "Item type: track, artist, album, playlist, or show"
+      },
+      "title": {
+        "type": "string",
+        "description": "Title or name of the item"
+      },
+      "url": {
+        "type": "string",
+        "description": "Direct Spotify URL"
+      },
+      "artists": {
+        "type": "array",
+        "description": "List of associated artists"
+      },
+      "album": {
+        "type": "string",
+        "description": "Album title if applicable"
+      },
+      "durationMs": {
+        "type": "integer",
+        "description": "Track duration in milliseconds"
+      },
+      "durationFormatted": {
+        "type": "string",
+        "description": "Track duration in mm:ss format"
+      },
+      "releaseDate": {
+        "type": "string",
+        "description": "Release date if available"
+      },
+      "monthlyListeners": {
+        "type": "string",
+        "description": "Monthly listener count for artist"
+      },
+      "followersCount": {
+        "type": "string",
+        "description": "Total followers count"
+      },
+      "trackCount": {
+        "type": "integer",
+        "description": "Total track count in album or playlist"
+      },
+      "tracks": {
+        "type": "array",
+        "description": "List of tracks inside album or playlist"
+      },
+      "coverImageUrl": {
+        "type": "string",
+        "description": "High resolution cover artwork or avatar URL"
+      },
+      "description": {
+        "type": "string",
+        "description": "Playlist, artist bio, or podcast description"
+      },
+      "scrapedAt": {
+        "type": "string",
+        "description": "Extraction timestamp"
+      }
+    }
+  }
+}
