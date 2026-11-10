@@ -1,0 +1,58 @@
+{
+  "title": "Spotify Scraper Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "startUrls": {
+      "title": "Spotify URLs",
+      "type": "array",
+      "description": "Direct Spotify URLs of tracks, playlists, artists, albums, or shows to scrape.",
+      "prefill": [
+        "https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M"
+      ],
+      "editor": "json"
+    },
+    "searchKeywords": {
+      "title": "Search Keywords",
+      "type": "array",
+      "description": "Keywords to search for on Spotify (e.g. 'Taylor Swift', 'chill lo-fi', 'Top 50').",
+      "editor": "json"
+    },
+    "searchType": {
+      "title": "Search Type",
+      "type": "string",
+      "description": "Category of items to search when using searchKeywords.",
+      "default": "track",
+      "editor": "select",
+      "enum": [
+        "track",
+        "artist",
+        "album",
+        "playlist"
+      ],
+      "enumTitles": [
+        "Tracks",
+        "Artists",
+        "Albums",
+        "Playlists"
+      ]
+    },
+    "maxResults": {
+      "title": "Max Results Per Search/Playlist",
+      "type": "integer",
+      "description": "Maximum number of tracks or items to extract per search keyword or playlist.",
+      "default": 50,
+      "minimum": 1,
+      "maximum": 500
+    },
+    "proxyConfiguration": {
+      "title": "Proxy Configuration",
+      "type": "object",
+      "description": "Apify Proxy settings to bypass rate limits and regional restrictions.",
+      "default": {
+        "useApifyProxy": true
+      },
+      "editor": "proxy"
+    }
+  }
+}
