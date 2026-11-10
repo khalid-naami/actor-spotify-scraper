@@ -1,0 +1,29 @@
+{
+  "actorSpecification": 1,
+  "fields": {
+    "totalItemsScraped": {
+      "type": "integer",
+      "title": "Total Items Extracted"
+    },
+    "totalTracks": {
+      "type": "integer",
+      "title": "Tracks Extracted"
+    },
+    "totalArtists": {
+      "type": "integer",
+      "title": "Artists Extracted"
+    },
+    "totalAlbums": {
+      "type": "integer",
+      "title": "Albums Extracted"
+    },
+    "totalPlaylists": {
+      "type": "integer",
+      "title": "Playlists Extracted"
+    },
+    "status": {
+      "type": "string",
+      "title": "Run Status"
+    }
+  }
+}
