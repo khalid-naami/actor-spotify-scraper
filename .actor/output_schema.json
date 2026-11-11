@@ -1,29 +1,18 @@
 {
-  "actorSpecification": 1,
-  "fields": {
-    "totalItemsScraped": {
-      "type": "integer",
-      "title": "Total Items Extracted"
-    },
-    "totalTracks": {
-      "type": "integer",
-      "title": "Tracks Extracted"
-    },
-    "totalArtists": {
-      "type": "integer",
-      "title": "Artists Extracted"
-    },
-    "totalAlbums": {
-      "type": "integer",
-      "title": "Albums Extracted"
-    },
-    "totalPlaylists": {
-      "type": "integer",
-      "title": "Playlists Extracted"
-    },
-    "status": {
+  "actorOutputSchemaVersion": 1,
+  "title": "Spotify Ultimate Scraper (Tracks, Artists, Albums & Playlists) Output",
+  "properties": {
+    "results": {
       "type": "string",
-      "title": "Run Status"
+      "title": "Dataset Records",
+      "description": "Scraped records stored in the default Apify dataset.",
+      "template": "{{links.apiDefaultDatasetUrl}}/items"
+    },
+    "overview": {
+      "type": "string",
+      "title": "Executive Summary Payload",
+      "description": "High-level summary report and execution metrics stored in Key-Value store.",
+      "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/OUTPUT"
     }
   }
 }
