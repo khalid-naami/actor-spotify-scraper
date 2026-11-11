@@ -2,19 +2,15 @@
   "actorSpecification": 1,
   "name": "spotify-scraper",
   "title": "Spotify Ultimate Scraper (Tracks, Artists, Albums & Playlists)",
-  "description": "Scrape tracks, albums, playlists, artists, podcasts, monthly listeners, follower counts, and tracklists from Spotify at scale.",
+  "description": "Spotify Music & Podcast Scraper: Extract public tracks, albums, full playlists, artist discographies, monthly listener counts, popularity scores, verified followers, and podcast episode metadata at scale. Optimized for music industry intelligence, playlist analytics, and A&R artist scouting.",
   "version": "1.0",
   "meta": {
     "templateId": "js-crawlee-playwright"
   },
+  "dockerfile": "../Dockerfile",
   "input": "./input_schema.json",
-  "dataset": "./dataset_schema.json",
-  "output": "./output_schema.json",
   "storages": {
-    "dataset": {
-      "actorSpecification": 1,
-      "title": "Spotify Scraped Dataset",
-      "description": "Extracted Spotify music, artists, playlists, and album metadata."
-    }
-  }
+    "dataset": "./dataset_schema.json"
+  },
+  "output": "./output_schema.json"
 }
