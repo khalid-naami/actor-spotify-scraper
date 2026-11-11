@@ -55,7 +55,18 @@ try {
                     '--disable-blink-features=AutomationControlled',
                 ],
             };
-            if (proxyUrl) launchOptions.proxy = { server: proxyUrl };
+            if (proxyUrl) {
+                try {
+                    const u = new URL(proxyUrl);
+                    launchOptions.proxy = {
+                        server: `${u.protocol}//${u.hostname}${u.port ? ':' + u.port : ''}`,
+                        ...(u.username ? { username: decodeURIComponent(u.username) } : {}),
+                        ...(u.password ? { password: decodeURIComponent(u.password) } : {}),
+                    };
+                } catch {
+                    launchOptions.proxy = { server: proxyUrl };
+                }
+            }
             browser = await chromium.launch(launchOptions);
         }
         return browser;
