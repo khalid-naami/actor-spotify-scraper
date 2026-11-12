@@ -1,7 +1,9 @@
 {
   "actorSpecification": 1,
   "fields": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
+    "additionalProperties": true,
     "properties": {
       "id": {
         "type": "string",
@@ -9,7 +11,7 @@
       },
       "type": {
         "type": "string",
-        "description": "Item type: track, artist, album, playlist, or show"
+        "description": "Item type: track, artist, album, playlist, show, or episode"
       },
       "title": {
         "type": "string",
@@ -19,9 +21,17 @@
         "type": "string",
         "description": "Direct Spotify URL"
       },
+      "owner": {
+        "type": "string",
+        "description": "Playlist curator or show publisher"
+      },
       "artists": {
         "type": "array",
-        "description": "List of associated artists"
+        "description": "List of associated artists",
+        "items": {
+          "type": "object",
+          "additionalProperties": true
+        }
       },
       "album": {
         "type": "string",
@@ -45,7 +55,11 @@
       },
       "followersCount": {
         "type": "string",
-        "description": "Total followers count"
+        "description": "Total followers or saves count"
+      },
+      "isVerified": {
+        "type": "boolean",
+        "description": "Verified Spotify artist badge"
       },
       "trackCount": {
         "type": "integer",
@@ -53,19 +67,85 @@
       },
       "tracks": {
         "type": "array",
-        "description": "List of tracks inside album or playlist"
+        "description": "List of tracks inside album or playlist",
+        "items": {
+          "type": "object",
+          "additionalProperties": true
+        }
       },
       "coverImageUrl": {
         "type": "string",
         "description": "High resolution cover artwork or avatar URL"
       },
+      "audioUrl": {
+        "type": "string",
+        "description": "Preview audio URL if available"
+      },
       "description": {
         "type": "string",
         "description": "Playlist, artist bio, or podcast description"
       },
+      "searchKeyword": {
+        "type": "string",
+        "description": "Search query that matched this result"
+      },
       "scrapedAt": {
         "type": "string",
         "description": "Extraction timestamp"
+      }
+    }
+  },
+  "views": {
+    "overview": {
+      "title": "Overview",
+      "transformation": {
+        "fields": [
+          "type",
+          "title",
+          "owner",
+          "trackCount",
+          "followersCount",
+          "monthlyListeners",
+          "durationFormatted",
+          "url"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "type": {
+            "label": "Type",
+            "format": "text"
+          },
+          "title": {
+            "label": "Title",
+            "format": "text"
+          },
+          "owner": {
+            "label": "Curator / Owner",
+            "format": "text"
+          },
+          "trackCount": {
+            "label": "Tracks",
+            "format": "number"
+          },
+          "followersCount": {
+            "label": "Followers / Saves",
+            "format": "text"
+          },
+          "monthlyListeners": {
+            "label": "Monthly Listeners",
+            "format": "text"
+          },
+          "durationFormatted": {
+            "label": "Duration",
+            "format": "text"
+          },
+          "url": {
+            "label": "Spotify URL",
+            "format": "link"
+          }
+        }
       }
     }
   }
