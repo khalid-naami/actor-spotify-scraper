@@ -7,20 +7,21 @@
  * conform strictly to Apify dataset schema types.
  */
 export function sanitizeRecord(value) {
+    if (value === null || value === undefined) return undefined;
+    if (typeof value === 'number') {
+        return Number.isFinite(value) ? value : undefined;
+    }
     if (Array.isArray(value)) {
         return value
             .map((item) => sanitizeRecord(item))
-            .filter((item) => item !== null && item !== undefined && !(typeof item === 'number' && Number.isNaN(item)));
+            .filter((item) => item !== null && item !== undefined);
     }
-    if (value && typeof value === 'object') {
+    if (typeof value === 'object') {
         const out = {};
         for (const [k, v] of Object.entries(value)) {
-            if (v === null || v === undefined) continue;
-            if (typeof v === 'number' && Number.isNaN(v)) continue;
-            if (Array.isArray(v) || typeof v === 'object') {
-                out[k] = sanitizeRecord(v);
-            } else {
-                out[k] = v;
+            const next = sanitizeRecord(v);
+            if (next !== null && next !== undefined) {
+                out[k] = next;
             }
         }
         return out;
