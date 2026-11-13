@@ -29,6 +29,7 @@ function isProxyTransportError(err) {
 await Actor.init();
 
 let browser = null;
+let hasFailed = false;
 
 try {
     const input = (await Actor.getInput()) || {};
@@ -168,6 +169,7 @@ try {
             }
             const b = await getBrowser();
             const page = await b.newPage({ locale: 'en-US' });
+            await page.route('**/*.{mp4,webm,avi,woff,woff2}', (route) => route.abort().catch(() => {}));
             page.on('response', async (response) => {
                 try {
                     const rUrl = response.url();
@@ -446,16 +448,20 @@ try {
     log.info(`Scraping finished! Total items scraped: ${totalItemsScraped}`);
 
     if (totalItemsScraped === 0) {
+        hasFailed = true;
         const reason = diagnostics.length > 0 ? diagnostics.join('; ') : 'No Spotify items could be extracted.';
         await Actor.fail(`Extracted 0 Spotify items. ${reason}`);
     }
 } catch (err) {
+    hasFailed = true;
     log.error(`Fatal execution error: ${err.message}`, { stack: err.stack });
-    await Actor.setValue('OUTPUT', { status: 'FAILED', error: err.message });
+    await Actor.setValue('OUTPUT', { status: 'FAILED', error: err.message }).catch(() => {});
     await Actor.fail(err.message);
 } finally {
     if (browser) {
         await browser.close().catch(() => {});
     }
-    await Actor.exit();
+    if (!hasFailed) {
+        await Actor.exit();
+    }
 }
